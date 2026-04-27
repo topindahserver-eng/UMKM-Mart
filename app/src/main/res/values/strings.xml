@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">UMKM Mart</string>
+    <string name="back">Kembali</string>
+    <string name="tap_to_select_photo">Ketuk untuk pilih foto</string>
+    <string name="product_name">Nama Produk</string>
+    <string name="product_price">Harga Produk (Rp)</string>
+    <string name="product_description">Deskripsi Produk</string>
+    <string name="save_product">Simpan Produk</string>
+</resources>
