@@ -8,9 +8,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.umkmmart.R
 import com.example.umkmmart.data.local.AppDatabase
-import com.example.umkmmart.data.local.CartItem
 import com.example.umkmmart.databinding.FragmentOrderListBinding
-import com.example.umkmmart.ui.cart.CartAdapter
 
 class OrderListFragment : Fragment(R.layout.fragment_order_list) {
 
@@ -21,12 +19,8 @@ class OrderListFragment : Fragment(R.layout.fragment_order_list) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentOrderListBinding.bind(view)
 
-        // Kita gunakan CartAdapter yang sudah ada untuk menampilkan daftar pesanan (Read-only)
-        val adapter = CartAdapter(
-            onPlusClick = {}, // Disable aksi di riwayat
-            onMinusClick = {},
-            onDeleteClick = {}
-        )
+        // Menggunakan OrderAdapter yang baru dibuat
+        val adapter = OrderAdapter()
 
         binding.rvOrders.apply {
             layoutManager = LinearLayoutManager(context)
@@ -34,16 +28,13 @@ class OrderListFragment : Fragment(R.layout.fragment_order_list) {
         }
 
         val db = AppDatabase.getDatabase(requireContext())
+        // Mengamati data dari tabel order_items
         db.orderDao().getAllOrders().asLiveData().observe(viewLifecycleOwner) { orders ->
             if (orders.isEmpty()) {
                 binding.tvEmptyOrders.visibility = View.VISIBLE
             } else {
                 binding.tvEmptyOrders.visibility = View.GONE
-                // Konversi OrderItem ke CartItem untuk adapter
-                val displayItems = orders.map { 
-                    CartItem(it.productId, it.productName, it.price, it.quantity, it.imageUrl) 
-                }
-                adapter.submitList(displayItems)
+                adapter.submitList(orders)
             }
         }
 

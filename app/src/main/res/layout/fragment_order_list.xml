@@ -8,16 +8,19 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:elevation="0dp">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbarOrders"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="?attr/actionBarSize"
             android:paddingTop="32dp"
-            app:title="Riwayat Pesanan"
-            app:navigationIcon="@drawable/ic_arrow_back" />
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:title="Pesanan Saya"
+            app:titleCentered="true"
+            app:titleTextColor="@color/text_primary" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -25,15 +28,33 @@
         android:id="@+id/rvOrders"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:padding="8dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:listitem="@layout/item_cart" />
 
-    <TextView
+    <LinearLayout
         android:id="@+id/tvEmptyOrders"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Belum ada pesanan"
-        android:visibility="gone" />
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/ic_cart"
+            app:tint="@color/divider" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Belum ada riwayat pesanan"
+            android:textColor="@color/text_secondary"
+            android:textSize="16sp" />
+    </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

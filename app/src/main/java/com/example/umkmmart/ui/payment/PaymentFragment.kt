@@ -4,9 +4,12 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.umkmmart.R
 import com.example.umkmmart.databinding.FragmentPaymentBinding
+import kotlinx.coroutines.launch
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -14,6 +17,8 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
 
     private var _binding: FragmentPaymentBinding? = null
     private val binding get() = _binding!!
+    
+    private val paymentViewModel: PaymentViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -30,8 +35,18 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
         }
 
         binding.btnConfirmPayment.setOnClickListener {
-            Toast.makeText(context, "Pembayaran Berhasil! Terima kasih.", Toast.LENGTH_LONG).show()
-            findNavController().navigate(R.id.action_paymentFragment_to_catalogFragment)
+            // Menonaktifkan tombol agar tidak diklik berkali-kali
+            binding.btnConfirmPayment.isEnabled = false
+            
+            // Menggunakan lifecycleScope untuk menunggu proses checkout selesai
+            lifecycleScope.launch {
+                paymentViewModel.checkout()
+                
+                Toast.makeText(context, "Pembayaran Berhasil! Pesanan diproses.", Toast.LENGTH_LONG).show()
+                
+                // Berpindah ke Katalog HANYA setelah data tersimpan di riwayat
+                findNavController().navigate(R.id.action_paymentFragment_to_catalogFragment)
+            }
         }
     }
 

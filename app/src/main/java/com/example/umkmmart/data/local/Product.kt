@@ -10,5 +10,6 @@ data class Product(
     val name: String,
     val description: String,
     val price: Double,
-    val imageUrl: String
+    val imageUrl: String,
+    val category: String = "Semua" // Menambahkan kolom kategori
 )

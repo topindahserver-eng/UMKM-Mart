@@ -4,7 +4,6 @@ plugins {
     alias(libs.plugins.kotlin.kapt)
     id("androidx.navigation.safeargs.kotlin")
 }
-
 android {
     namespace = "com.example.umkmmart"
     compileSdk = 35
@@ -18,7 +17,6 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -42,7 +40,6 @@ android {
         correctErrorTypes = true
     }
 }
-
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

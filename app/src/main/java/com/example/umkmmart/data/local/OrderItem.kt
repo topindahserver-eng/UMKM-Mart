@@ -12,5 +12,6 @@ data class OrderItem(
     val price: Double,
     val quantity: Int,
     val imageUrl: String,
+    val category: String = "Lokal",
     val orderDate: Long = System.currentTimeMillis()
 )

@@ -2,11 +2,23 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="primary">#2E7D32</color>
-    <color name="primary_variant">#1B5E20</color>
-    <color name="secondary">#FFA000</color>
-    <color name="background">#F5F5F5</color>
-    <color name="error">#D32F2F</color>
-    <color name="text_primary">#212121</color>
-    <color name="text_secondary">#757575</color>
+
+    <!-- Modern Green Palette -->
+    <color name="primary">#2D958E</color>
+    <color name="primary_variant">#1F6E69</color>
+    <color name="primary_light">#E0F2F1</color>
+
+    <color name="secondary">#F9A825</color>
+    <color name="secondary_light">#FFF9C4</color>
+
+    <color name="background">#F7F9FC</color>
+    <color name="surface">#FFFFFF</color>
+
+    <color name="error">#E57373</color>
+
+    <color name="text_primary">#1A1C1E</color>
+    <color name="text_secondary">#6C757D</color>
+    <color name="text_hint">#ADB5BD</color>
+
+    <color name="divider">#EDF2F7</color>
 </resources>
